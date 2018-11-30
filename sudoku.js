@@ -1,5 +1,7 @@
 "use strict"
 
+// SUDOKU NAIVE
+
 class Sudoku {
   constructor(board_string) {
     this.boardString = board_string;
