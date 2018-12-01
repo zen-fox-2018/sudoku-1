@@ -14,7 +14,7 @@ class Sudoku {
         }
       }
     }
-    return tracker
+    return tracker;
   }
 
   solve() {
@@ -25,7 +25,7 @@ class Sudoku {
       debugger;
       // console.log(trackCoordinate[i])
       // console.log(trackCoordinate[i][1])
-      let isSucceed = false
+      let isSucceed = false;
       let numberStart = Number(this.sudokuBoard[trackCoordinate[i][0]][trackCoordinate[i][1]]);
       // console.log("====>", numberStart);
       for (let k = numberStart; k <= 10; k++) {
@@ -37,8 +37,8 @@ class Sudoku {
         } 
       }
       if (isSucceed === false) {
-        this.sudokuBoard[trackCoordinate[i][0]][trackCoordinate[i][1]] = '0'
-        i--
+        this.sudokuBoard[trackCoordinate[i][0]][trackCoordinate[i][1]] = '0';
+        i--;
       } else {
         i++;
       }
@@ -51,7 +51,7 @@ class Sudoku {
   // Returns a string representing the current state of the board
   board() {
     let theBoard = [];
-    let index = 0
+    let index = 0;
     for (let i = 0; i < 9; i++){
       let temp = [];
       for (let j = 0; j < 9; j++) {
@@ -105,8 +105,8 @@ var board_string = fs.readFileSync('set-01_sample.unsolved.txt')
   .toString()
   .split("\n")[0]
 
-var game = new Sudoku(board_string)
+var game = new Sudoku(board_string);
 // Remember: this will just fill out what it can and not "guess"
-game.solve()
+game.solve();
 // console.log(game.board())
 // game.numberTracker()
