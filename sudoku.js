@@ -24,13 +24,13 @@ class Sudoku {
             if(this.checkVertical(j,number) && this.checkHorizontal(i,number) && this.checkGrid(i,j,number)){
               //console.log(number,'===> ini masuk ')
               this.papan[i][j] = String(number)
-              historryArray.push([i,j,number + 1])
+              historryArray.push([i,j,number])
               tempNumber++
               //console.log(historryArray,tempNumber,'Ini History array dan number')
               break
             }
-            else if(number >= 9){
-              while(tempNumber> 1){
+            else {
+              while(tempNumber> 1 && (number >= 9)){
                 // assign angka sebelumnya jadi 0 dan i j yang paling terakhir
                 console.log(historryArray)
                 
@@ -51,6 +51,9 @@ class Sudoku {
              //tempNumber=0
             }
             number++
+            if(number>9){
+              number = 1
+            }
           }
         }
         
