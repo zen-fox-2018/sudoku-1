@@ -15,7 +15,7 @@ class Sudoku {
        
         console.log(this.papan)
         this.sleep(100)
-        console.clear()
+        //console.clear()
         if(this.papan[i][j] == 0) {
           let number = 1
           while(true) {
@@ -27,14 +27,14 @@ class Sudoku {
               //console.log(historryArray,tempNumber,'Ini History array dan number')
               break
             }
-            else {
-              while(tempNumber > 1 && (number >= 9)){
+            
+              while(tempNumber >= 1 && (number >= 9)){
                 // assign angka sebelumnya jadi 0 dan i j yang paling terakhir
                 //console.log(historryArray)
                 this.papan[i][j] = '0' 
                 i = historryArray[historryArray.length - 1][0]
                 j = historryArray[historryArray.length - 1][1]
-                number = historryArray[historryArray.length - 1][2] +1
+                number = historryArray[historryArray.length - 1][2] 
                 //console.log(`>>> ini current i dan j ${i} ${j}`)
                 historryArray = historryArray.slice(0 , historryArray.length - 1)    
                 tempNumber--
@@ -42,7 +42,7 @@ class Sudoku {
                 //console.log(tempNumber,'Ini temp number',historryArray.length,'Ini array length',)
                 }
               //console.log('While Stop')
-            }
+            
             number++
             if(number > 9) {
               number = 1
@@ -115,7 +115,7 @@ class Sudoku {
 var fs = require('fs')
 var board_string = fs.readFileSync('set-01_sample.unsolved.txt')
   .toString()
-  .split("\n")[0]
+  .split("\n")[5]
 
 var game = new Sudoku(board_string)
 
