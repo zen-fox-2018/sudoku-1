@@ -27,7 +27,6 @@ class Sudoku {
           break;
         }
       }
-      // console.log(num, '=========', i);
       if (isSolved) {
         this.boardArr[x][y] = num;
       }
@@ -50,7 +49,6 @@ class Sudoku {
       }
       result.push(hasil);
     }
-    // console.log(result);
     return result;
   }
 
@@ -131,15 +129,9 @@ var board_string = fs.readFileSync('set-01_sample.unsolved.txt')
   .toString()
   .split("\n")[0]
 
-// console.log(board_string);
-
 
 var game = new Sudoku(board_string);
-// console.log(game);
 
 // Remember: this will just fill out what it can and not "guess"
 
 console.log(game.solve());
-// console.log('\n');
-// console.log(game.board(board_string));
-// console.log(game.checkBox(4, 0, 1));
