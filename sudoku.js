@@ -7,21 +7,19 @@ class Sudoku {
     this.papan = this.board()
   }
 
-  solve() {
-    
-    let historryArray=[]
+  solve() {  
+    let historryArray= []
     let tempNumber = 0
     for(let i = 0; i < this.papan.length; i++){
       for(let j = 0; j < this.papan[i].length; j++){
        
-        // console.log(this.papan)
-        // this.sleep(500)
-        
-        if(this.papan[i][j] == 0){
-          
+        console.log(this.papan)
+        this.sleep(100)
+        console.clear()
+        if(this.papan[i][j] == 0) {
           let number = 1
-          while(true && number <= 9){
-            if(this.checkVertical(j,number) && this.checkHorizontal(i,number) && this.checkGrid(i,j,number)){
+          while(true) {
+            if(this.checkVertical(j,number) && this.checkHorizontal(i,number) && this.checkGrid(i,j,number)) {
               //console.log(number,'===> ini masuk ')
               this.papan[i][j] = String(number)
               historryArray.push([i,j,number])
@@ -30,28 +28,23 @@ class Sudoku {
               break
             }
             else {
-              while(tempNumber> 1 && (number >= 9)){
+              while(tempNumber > 1 && (number >= 9)){
                 // assign angka sebelumnya jadi 0 dan i j yang paling terakhir
-                console.log(historryArray)
-                
+                //console.log(historryArray)
                 this.papan[i][j] = '0' 
                 i = historryArray[historryArray.length - 1][0]
                 j = historryArray[historryArray.length - 1][1]
                 number = historryArray[historryArray.length - 1][2] +1
-                console.log(`>>> ini current i dan j ${i} ${j}`)
+                //console.log(`>>> ini current i dan j ${i} ${j}`)
                 historryArray = historryArray.slice(0 , historryArray.length - 1)    
-                
                 tempNumber--
-                console.log( number,'ini Current number')
-                console.log(tempNumber,'Ini temp number',historryArray.length,'Ini array length',)
-                
+                //console.log( number,'ini Current number')
+                //console.log(tempNumber,'Ini temp number',historryArray.length,'Ini array length',)
                 }
-              console.log('While Stop')
-              //break
-             //tempNumber=0
+              //console.log('While Stop')
             }
             number++
-            if(number>9){
+            if(number > 9) {
               number = 1
             }
           }
