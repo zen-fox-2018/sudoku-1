@@ -15,7 +15,7 @@ class Sudoku {
       for(let j = 0; j < this.papan[i].length; j++){
        
         // console.log(this.papan)
-        // this.sleep(50)
+        // this.sleep(500)
         
         if(this.papan[i][j] == 0){
           
@@ -24,7 +24,7 @@ class Sudoku {
             if(this.checkVertical(j,number) && this.checkHorizontal(i,number) && this.checkGrid(i,j,number)){
               //console.log(number,'===> ini masuk ')
               this.papan[i][j] = String(number)
-              historryArray.push([i,j,number])
+              historryArray.push([i,j,number + 1])
               tempNumber++
               //console.log(historryArray,tempNumber,'Ini History array dan number')
               break
@@ -33,25 +33,23 @@ class Sudoku {
               while(tempNumber> 1){
                 // assign angka sebelumnya jadi 0 dan i j yang paling terakhir
                 console.log(historryArray)
-                console.log( number,'ini Current number')
+                
                 this.papan[i][j] = '0' 
                 i = historryArray[historryArray.length - 1][0]
                 j = historryArray[historryArray.length - 1][1]
-                number = historryArray[historryArray.length - 1][2] + 1
+                number = historryArray[historryArray.length - 1][2] +1
                 console.log(`>>> ini current i dan j ${i} ${j}`)
                 historryArray = historryArray.slice(0 , historryArray.length - 1)    
                 
                 tempNumber--
+                console.log( number,'ini Current number')
                 console.log(tempNumber,'Ini temp number',historryArray.length,'Ini array length',)
                 
                 }
               console.log('While Stop')
+              //break
              //tempNumber=0
-            }else{
-              if(number>9){
-                number=1
-              }
-            } 
+            }
             number++
           }
         }
@@ -61,9 +59,6 @@ class Sudoku {
     return this.papan
   }
 
-  backTrack(coorI, coorJ, number){
-
-  }
 
   checkGrid(coorI,coorJ,number){
     for(let i = ~~(coorI / 3) * 3 ; i < ~~(coorI / 3) * 3 + 3; i++){
