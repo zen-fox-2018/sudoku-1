@@ -27,7 +27,7 @@ class Sudoku {
           break;
         }
       }
-      console.log(num, '=========', i);
+      // console.log(num, '=========', i);
       if (isSolved) {
         this.boardArr[x][y] = num;
       }
