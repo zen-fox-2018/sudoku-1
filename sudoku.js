@@ -11,8 +11,6 @@ class Sudoku {
 
   solve() {
 
-    debugger;
-
     for(let i = 0; i < this.coordinates.length; i++) {
 
       let row = this.coordinates[i].row;
