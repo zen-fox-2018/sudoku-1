@@ -1,8 +1,6 @@
 "use strict"
 
 class Sudoku {
-
-
   constructor(board_string) {
     this.boardGame = board_string;
     this.coordinates = [];
@@ -12,7 +10,7 @@ class Sudoku {
   solve() {
 
     for(let i = 0; i < this.coordinates.length; i++) {
-
+      // console.log(this.coordinates[i].row)
       let row = this.coordinates[i].row;
       let column = this.coordinates[i].column;
 
@@ -24,9 +22,16 @@ class Sudoku {
     
         if (horizontal === true && vertical === true && grid === true) {
           this.sudokuBoard[row][column] = this.coordinates[i].value;
+          break;
         } else {
           this.coordinates[i].value++;
         }
+      }
+
+      if(this.coordinates[i].value === 10) {
+        this.coordinates[i].value = 0;
+        this.sudokuBoard[row][column] = this.coordinates[i].value;
+        i = i - 2;
       }
     }
     return this.sudokuBoard;
