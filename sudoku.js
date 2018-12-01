@@ -5,9 +5,48 @@ class Sudoku {
     this.sudokuBoard = this.board(board_string);
   }
 
-  solve() {
-    console.log(this.inputNumber())
+  positionTracker() {
+    let tracker = [];
+    for (let i = 0; i <= this.sudokuBoard.length-1; i++) {
+      for (let j = 0; j <= this.sudokuBoard[i].length-1; j++) {
+        if (this.sudokuBoard[i][j] === '0') {
+          tracker.push([i, j]);
+        }
+      }
+    }
+    return tracker
   }
+
+  solve() {
+    let trackCoordinate = this.positionTracker()
+    let i = 0;
+    // console.log(trackCoordinate)
+    while (i <= trackCoordinate.length-1) {
+      debugger;
+      // console.log(trackCoordinate[i])
+      // console.log(trackCoordinate[i][1])
+      let isSucceed = false
+      let numberStart = Number(this.sudokuBoard[trackCoordinate[i][0]][trackCoordinate[i][1]]);
+      // console.log("====>", numberStart);
+      for (let k = numberStart; k <= 10; k++) {
+        if (k <= 9 && this.checkHorizontal(k.toString(), trackCoordinate[i][0]) === true && this.checkVertical(k.toString(), trackCoordinate[i][1]) === true && this.chekBlock(k.toString(), trackCoordinate[i][0], trackCoordinate[i][1]) === true) {
+          // console.log('+++')
+          this.sudokuBoard[trackCoordinate[i][0]][trackCoordinate[i][1]] = k.toString();
+          isSucceed = true;
+          break;
+        } 
+      }
+      if (isSucceed === false) {
+        this.sudokuBoard[trackCoordinate[i][0]][trackCoordinate[i][1]] = '0'
+        i--
+      } else {
+        i++;
+      }
+      // console.log(this.sudokuBoard)
+    }
+    console.log(this.sudokuBoard);
+  }
+
 
   // Returns a string representing the current state of the board
   board() {
@@ -23,31 +62,6 @@ class Sudoku {
     }
     return theBoard;
   }
-  
-  inputNumber() {
-    // console.log(this.sudokuBoard)
-    let trackCoordinate = {}
-    for (let i = 0; i <= this.sudokuBoard.length-1; i++) {
-      let row = i;
-      for (let j = 0; j <= this.sudokuBoard.length-1; j++) {
-        let column = j;
-        while (this.sudokuBoard[i][j] === '0'){
-          let numberStart = 0
-          for (let k = numberStart; k <= 9; k++) {
-            if (this.checkHorizontal(k.toString(), i) === true && this.checkVertical(k.toString(), j) === true && this.chekBlock(k.toString(), i, j) === true) {
-              // console.log('+++')
-              this.sudokuBoard[i][j] = k.toString();
-              trackCoordinate[[i, j]] = [k]
-              console.log(this.sudokuBoard)
-            } 
-          }
-        }
-      }
-    }
-    return this.sudokuBoard;
-  }
-
- 
 
   checkHorizontal(number, row) {
     // console.log(this.sudokuBoard[1])
