@@ -14,38 +14,48 @@ class Sudoku {
     for(let i = 0; i < this.papan.length; i++){
       for(let j = 0; j < this.papan[i].length; j++){
        
-        console.log(this.papan)
-        this.sleep(50)
+        // console.log(this.papan)
+        // this.sleep(50)
         
         if(this.papan[i][j] == 0){
           
           let number = 1
-          while(true && number <= 10){
+          while(true && number <= 9){
             if(this.checkVertical(j,number) && this.checkHorizontal(i,number) && this.checkGrid(i,j,number)){
-              console.log(number,'===> ini masuk ')
+              //console.log(number,'===> ini masuk ')
               this.papan[i][j] = String(number)
               historryArray.push([i,j,number])
               tempNumber++
-              
               //console.log(historryArray,tempNumber,'Ini History array dan number')
               break
             }
             else if(number >= 9){
-              while(tempNumber>=1){
+              while(tempNumber> 1){
+                // assign angka sebelumnya jadi 0 dan i j yang paling terakhir
                 console.log(historryArray)
-                console.log(tempNumber,'Ini temp number',historryArray.length,'Ini array length', number,'ini Current number')
+                console.log( number,'ini Current number')
+                this.papan[i][j] = '0' 
                 i = historryArray[historryArray.length - 1][0]
                 j = historryArray[historryArray.length - 1][1]
-                number = historryArray[historryArray.length - 1][2]
-                this.papan[i][j] = '0' 
+                number = historryArray[historryArray.length - 1][2] + 1
+                console.log(`>>> ini current i dan j ${i} ${j}`)
                 historryArray = historryArray.slice(0 , historryArray.length - 1)    
-                tempNumber--
                 
+                tempNumber--
+                console.log(tempNumber,'Ini temp number',historryArray.length,'Ini array length',)
+                
+                }
+              console.log('While Stop')
+             //tempNumber=0
+            }else{
+              if(number>9){
+                number=1
               }
-            }
+            } 
             number++
           }
         }
+        
       }
     }
     return this.papan
