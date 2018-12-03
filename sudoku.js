@@ -23,29 +23,24 @@ class Sudoku {
 
   solve() {
     for(let i = 0; i < this.inputHistory[0].row.length; i++) {
-        let k = 0
-          while(true) {
-            let row = this.inputHistory[0].row[i]
-            let col = this.inputHistory[1].col[i]
-            if(k <= 8 && this.checkHorizontal(row,this.angka[k]) == true && this.checkVertical(col,this.angka[k]) == true && this.checkGrid(row,col,this.angka[k])== true) {
-              this.sudoku[row][col]= this.angka[k]
-              this.inputHistory[2].value.push(k)
-              break
-            }else{
-              k++
-              if(k > 8) {
-                this.sudoku[row][col] = '0'
-                i -=1
-                k = this.inputHistory[2].value[i]+1
-              }
-            }
-          } 
-          //baru sampai i ke 24, i ke 25 nya infinite loop
-          if(i==24){
-            break
+      let k = 0
+      while(true) {
+        let row = this.inputHistory[0].row[i]
+        let col = this.inputHistory[1].col[i]
+        if(k <= 8 && this.checkHorizontal(row,this.angka[k]) == true && this.checkVertical(col,this.angka[k]) == true && this.checkGrid(row,col,this.angka[k])== true) {
+          this.sudoku[row][col]= this.angka[k]
+          this.inputHistory[2].value[i]= k
+          break
+        }else{
+          k++
+          if(k > 8) {
+            this.sudoku[row][col] = '0'
+            i -=1
+            k = this.inputHistory[2].value[i]+1
           }
-         
         }
+      } 
+    }
     return this.sudoku
   }
   // Returns a string representing the current state of the board
